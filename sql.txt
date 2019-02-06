@@ -1,0 +1,44 @@
+CREATE TABLE minions(
+    userID INT PRIMARY KEY,
+    userName VARCHAR(10) NOT NULL,
+    color INT DEFAULT 1,
+    age INT UNIQUE
+);
+-- PRIMARY KEY IS NOT NULL and UNIQUE default
+-- shows information on the data (types, status)
+DESCRIBE minions;
+-- deletes the table
+DROP TABLE minions;
+
+ALTER TABLE minions ADD player_level DECIMAL(3,2);
+ALTER TABLE minions DROP COLUMN player_level;
+
+-- makes a data entry into the database
+INSERT INTO minions VALUES (2,"Danny", 2,1, 2.2);
+INSERT INTO minions VALUES (1,"JACKK", 23,3,1.2);
+INSERT INTO minions VALUES (3, "SAM", 13, 31, 3.4);
+-- only some of the columns to be filled
+INSERT INTO minions(userID, userName, age, player_level) VALUES (25, "James",34,4.5);
+-- ALTER TABLE minions DROP ROW 28;
+
+-- updates the data at specific places
+UPDATE minions
+SET player_level=4.2, userName="bobby"
+WHERE userID=2 OR userID=25;
+
+-- deleting data
+DELETE FROM minions 
+WHERE userID<25;
+
+-- able to oreder things desc or asc
+SELECT userId, userName
+FROM minions
+ORDER BY userID DESC;
+
+SELECT userId, userName
+FROM minions
+WHERE userID IN (2, 3);
+
+-- displays the data stored.
+-- the * means "ALL"
+SELECT * FROM minions;
